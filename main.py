@@ -48,12 +48,7 @@ def open_socket(ip):
     return connection
 
 def webpage(Password):
-    """
-    This function contains the HTML string containing elements that would be displayed in the webpage.
-    
-    As a sample, this takes in temperature (from the onboard temperature sensor) and the onboard LED state (ON or OFF).
-    According to the actual purpose of the project, the parameters can be changed.
-    """
+    """This function contains the HTML string containing elements that would be displayed in the webpage."""
     
     
     html = f"""
@@ -73,8 +68,6 @@ def serve(connection):
     """This function starts the web server and serves the webpage."""
     
     # starting the web server
-
-
     while True:
         client = connection.accept()[0]
         request = client.recv(1024)
@@ -85,13 +78,10 @@ def serve(connection):
         except IndexError:
             pass
         
-
-
         # generates password from list
         Password = []
         for n in range(10):
             Password.append(secrets.choice(characters))
-
                 
         html = webpage(Password)
         client.send(html)
