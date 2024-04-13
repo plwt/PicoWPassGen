@@ -3,6 +3,7 @@ import network
 import socket
 from time import sleep
 import secrets
+import machine
 
 # connection details
 ssid = "??????"
