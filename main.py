@@ -2,12 +2,12 @@
 import network
 import socket
 from time import sleep
-import secrets
+import random
 import machine
 
 # connection details
-ssid = "??????"
-password = "??????"
+ssid = "?????"
+password = "?????"
 
 
 # List of characters for password
@@ -57,7 +57,7 @@ def webpage(Password):
             <html>
             <body style="background-color:#000000">
             <p> </p>
-            <p style="color:#00ff41; font-size:50px">Password is {Password} *C</p>
+            <p style="color:#00ff41; font-size:50px">Password is {Password}</p>
             <p> </p>
             </body>
             </html>
@@ -80,10 +80,13 @@ def serve(connection):
             pass
         
         # generates password from list
-        Password = []
+        Passgenlist = []
         for n in range(10):
-            Password.append(secrets.choice(characters))
-                
+            Passgenlist.append(random.choice(characters))
+        
+        Passwor1 = str(Passgenlist)[1:-1]
+        Passwor2 = Passwor1.replace("'","")
+        Password = Passwor2.replace(", ","")
         html = webpage(Password)
         client.send(html)
         client.close()
